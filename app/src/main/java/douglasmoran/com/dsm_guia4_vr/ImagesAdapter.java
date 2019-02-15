@@ -1,6 +1,7 @@
 package douglasmoran.com.dsm_guia4_vr;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -33,18 +34,17 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+        final Images imgs = images.get(i);
 
-        final Image image = images.get(i);
-
-        viewHolder.imgs.setImageResource(((Images) image).getImg());
+        viewHolder.imgs.setImageResource(imgs.getImg());
         viewHolder.imgs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+                Intent intent = new Intent(context, PanoramicActivity.class);
+                intent.putExtra("images", imgs);
+                context.startActivity(intent);
             }
         });
-
-
 
 
     }
@@ -56,12 +56,12 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+
         private ImageView imgs;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             imgs = itemView.findViewById(R.id.imgsVR);
-
         }
     }
 }

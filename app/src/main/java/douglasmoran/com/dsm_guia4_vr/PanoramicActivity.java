@@ -1,5 +1,8 @@
 package douglasmoran.com.dsm_guia4_vr;
 
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,29 +16,13 @@ public class PanoramicActivity extends AppCompatActivity {
 
     private VrPanoramaView panoramaView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_panoramic);
 
         initPanoramaActivity();
-
-    }
-
-    private void initPanoramaActivity() {
-
-        panoramaView = findViewById(R.id.pano_view);
-
-        Image panoramicImage = (Image) getIntent().getSerializableExtra("img");
-
-
-        final ImageView tmpImageView = new ImageView(this);
-
-        
-
-
-
-
 
     }
 
@@ -60,4 +47,28 @@ public class PanoramicActivity extends AppCompatActivity {
 
     }
 
+    private void initPanoramaActivity() {
+
+        panoramaView = findViewById(R.id.pano_view);
+
+        Images panoImages = (Images) getIntent().getSerializableExtra("images");
+
+
+        final ImageView tmpImageView = new ImageView(this);
+
+        tmpImageView.setImageResource(panoImages.getImg());
+        Bitmap bitmap = ((BitmapDrawable)tmpImageView.getDrawable()).getBitmap();
+        panoramaView.loadImageFromBitmap(bitmap,panoOptions);
+        panoOptions.inputType = VrPanoramaView.Options.TYPE_MONO;
+
+
+        PackageManager packageManager = getPackageManager();
+        boolean gzroExist = packageManager.hasSystemFeature(PackageManager.FEATURE_SENSOR_GYROSCOPE);
+
+
+
+        if (!gzroExist){
+            panoramaView.setPureTouchTracking(true);
+        }
+    }
 }
