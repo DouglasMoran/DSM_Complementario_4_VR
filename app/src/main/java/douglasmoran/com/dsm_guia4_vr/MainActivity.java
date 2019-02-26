@@ -2,7 +2,6 @@ package douglasmoran.com.dsm_guia4_vr;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -28,10 +27,9 @@ public class MainActivity extends AppCompatActivity {
         images.add(new Images(3,R.drawable.img3));
         images.add(new Images(4,R.drawable.img4));
         images.add(new Images(5,R.drawable.img5));
-        images.add(new Images(6,R.drawable.imgvruno));
-        images.add(new Images(7,R.drawable.imgvrdos));
-        images.add(new Images(8,R.drawable.imgvrtres));
-
+        images.add(new Images(6,R.drawable.img8));
+        images.add(new Images(7,R.drawable.img6));
+        images.add(new Images(8,R.drawable.img7));
 
 
         RecyclerView recyclerView = findViewById(R.id.recyclerImages);
